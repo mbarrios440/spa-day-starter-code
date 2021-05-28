@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
     <title>Fragments</title>
 </head>
 <body>
-        <p th:fragment = "manicureDescription">Our manicure is a great way to spend 30 minutes of your day! We use shea butter hand cream and the finest gel polish.</p>
-        <p th:fragment = "pedicureDescription">Relax for 45 minutes in pure luxury! Our massage chairs and experienced nail techs are here to get your feet in shape for sandal season!</p>
+<p th:fragment="manicureDescription">Our manicure is a great way to spend 30 minutes of your day! We use shea butter
+    hand cream and the finest gel polish.</p>
+<p th:fragment="pedicureDescription">Relax for 45 minutes in pure luxury! Our massage chairs and experienced nail techs
+    are here to get your feet in shape for sandal season!</p>
+
+<div th:fragment="facialTreatments">
+    <h3>Facial Treatments</h3>
+    <p>The facial treatments below are recommended by our estheticians for your given skin type.</p>
+    <table>
+        <th:block th:each="facial : ${appropriateFacials}">
+            <tr>
+                <td th:text="${facial}"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 </body>
 </html>

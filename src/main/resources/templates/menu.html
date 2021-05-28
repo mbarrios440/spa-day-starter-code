@@ -1,15 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Spa Menu</title>
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet " href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 </head>
-<body>
-<h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
+<body class="bg-danger">
+<div id="clientProfile">
+    <h1>My Super Fancy Spa</h1><br>
+    <h2>My profile</h2>
+    <p th:text="${name}"></p>
+    <p th:text="${skintype}"></p>
+    <p th:text="${manipedi}"></p>
 </div>
-<div id = "servicesMenu">
+<div id="servicesMenu">
+    <h1>Menu of Available Services</h1>
+    <div th:replace="fragments :: facialTreatments"></div>
+
+
+    <div th:if="${manipedi == 'manicure' or manipedi == 'both'}">
+        <h3>Manicure</h3>
+        <p th:replace="fragments :: manicureDescription"></p>
+    </div>
+    <div th:if="${manipedi == 'pedicure' or manipedi == 'both'}">
+        <h3>Pedicure</h3>
+        <p th:replace="fragments :: pedicureDescription"></p>
+    </div>
+
 </div>
 </body>
 </html>
