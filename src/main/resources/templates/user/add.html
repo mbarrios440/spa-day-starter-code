@@ -4,6 +4,7 @@
 <body class="container">
 
 <form th:replace="fragments :: addForm"></form>
+<p th:if="${error}" class="text-danger">Passwords must match</p>
 
 </body>
 </html>

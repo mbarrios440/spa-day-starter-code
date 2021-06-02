@@ -15,12 +15,12 @@
 <form method="post" th:action="@{/user}" class="form-group" th:fragment="addForm">
     <div>
         <label>Username:
-            <input type="text" name="username" class="form-control">
+            <input type="text" name="username" class="form-control" th:value="${username}">
         </label>
     </div>
     <div>
         <label>Email:
-            <input type="email" name="email" class="form-control">
+            <input type="email" name="email" class="form-control" th:value="${email}">
         </label>
     </div>
     <div>
