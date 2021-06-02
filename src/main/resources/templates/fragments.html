@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
-    <title>Fragments</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title>Spa Day</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-        <p th:fragment = "manicureDescription">Our manicure is a great way to spend 30 minutes of your day! We use shea butter hand cream and the finest gel polish.</p>
-        <p th:fragment = "pedicureDescription">Relax for 45 minutes in pure luxury! Our massage chairs and experienced nail techs are here to get your feet in shape for sandal season!</p>
+<p th:fragment="manicureDescription">Our manicure is a great way to spend 30 minutes of your day! We use shea butter
+    hand cream and the finest gel polish.</p>
+<p th:fragment="pedicureDescription">Relax for 45 minutes in pure luxury! Our massage chairs and experienced nail techs
+    are here to get your feet in shape for sandal season!</p>
+
+<form method="post" th:action="@{/user}" class="form-group" th:fragment="addForm">
+    <div>
+        <label>Username:
+            <input type="text" name="username" class="form-control">
+        </label>
+    </div>
+    <div>
+        <label>Email:
+            <input type="email" name="email" class="form-control">
+        </label>
+    </div>
+    <div>
+        <label>Password:
+            <input type="password" name="password" class="form-control">
+        </label>
+    </div>
+    <div>
+        <label>Verify password:
+            <input type="password" name="verify" class="form-control">
+        </label>
+    </div>
+    <div>
+        <input type="submit" value="Submit" class="btn btn-success">
+    </div>
+</form>
+
+
 </body>
 </html>
