@@ -1,12 +1,10 @@
 package org.launchcode.spaday.controllers;
 
+import org.launchcode.spaday.data.UserData;
 import org.launchcode.spaday.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("user")
@@ -18,16 +16,25 @@ public class UserController {
     }
 
     @PostMapping
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify){
-        model.addAttribute("user",user);
-        model.addAttribute("username",user.getUsername());
-        model.addAttribute("email",user.getEmail());
+    public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("users", UserData.getAll());
 
-        if (user.getPassword().equals(verify)){
+        if (user.getPassword().equals(verify)) {
+            UserData.add(user);
             return "user/index";
         } else {
-            model.addAttribute("error",true);
+            model.addAttribute("error", true);
             return "user/add";
         }
     }
+
+    @GetMapping("user/{userId}")
+    public String displayEditForm(Model model, @PathVariable int userId) {
+
+        model.addAttribute("user", UserData.getById(userId));
+        return "user/edit";
+    }
+
 }
